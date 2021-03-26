@@ -1,4 +1,5 @@
 import { canvas, ctx } from './canvas.js';
+import { caught } from './controls.js';
 
 export const lastMoves = [];
 
@@ -64,7 +65,7 @@ export class Ball {
         }
 
         // friction
-        if(this.wallCollision === 'bottom' && this.ys < 1 && this.ys > -1 ) {            
+        if(this.wallCollision === 'bottom' && this.ys < 1 && this.ys > -1 ) {
             this.grounded = true;
         } else {
             this.grounded = false;
@@ -75,7 +76,7 @@ export class Ball {
                 this.xs *= 0.97;
                 if(this.wallcollision === 'right' || this.wallcollision === 'left') {
                     this.xs *= 0.4;
-                }                
+                }
             } else {
                 this.rotationSpeed *= 0.55;
                 this.xs *= 0.95;
@@ -114,3 +115,5 @@ export class Ball {
         ctx.restore();
     }
 }
+
+export const ball = new Ball(200, 200, 80, '#444');
