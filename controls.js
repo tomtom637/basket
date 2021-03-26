@@ -7,7 +7,6 @@ window.addEventListener('mousedown', handleMousedown);
 window.addEventListener('mousemove', handleMousemove);
 window.addEventListener('mouseup', handleMouseup);
 
-// dirty controls to work on to next
 window.addEventListener('keydown', e => {
     if(e.key === ' ') {
         if(ball.ys <= 2 || ball.ys >= -2) {
