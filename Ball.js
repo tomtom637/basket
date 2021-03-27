@@ -3,7 +3,7 @@ import { caught } from './controls.js';
 
 export const lastMoves = [];
 
-export class Ball {
+class Ball {
     constructor(x, y, size, color) {
         this.x = x;
         this.y = y;

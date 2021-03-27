@@ -1,9 +1,42 @@
 import { ball, lastMoves } from './Ball.js';
 
 // Controls
-export let caught = false;
+const speedToAdd = 25;
 
 window.addEventListener('mousedown', handleMousedown);
+window.addEventListener('touchstart', handleMousedown);
+
+function handleMousedown(e) {
+  let xVeloc;
+  let yVeloc;
+
+  if(e.clientX === undefined) {
+    xVeloc = ball.x - e.changedTouches[0].clientX;
+    yVeloc = ball.y - e.changedTouches[0].clientY;
+  } else {
+    xVeloc = ball.x - e.clientX;
+    yVeloc = ball.y - e.clientY;
+  }
+
+  // normalize the speeds
+  let nxVeloc = xVeloc > 0 ? xVeloc : -xVeloc;
+  let nyVeloc = yVeloc > 0 ? yVeloc : -yVeloc;
+
+ const xRatio = xVeloc / (nxVeloc + nyVeloc);
+ const yRatio = yVeloc / (nxVeloc + nyVeloc);
+
+ ball.xs += speedToAdd * xRatio;
+ ball.ys += speedToAdd * yRatio;
+}
+
+
+
+
+
+
+ export let caught = false;
+
+/*window.addEventListener('mousedown', handleMousedown);
 window.addEventListener('mousemove', handleMousemove);
 window.addEventListener('mouseup', handleMouseup);
 
@@ -57,4 +90,4 @@ function handleMouseup(e) {
         lastMoves.length = 0;
     }
     caught = false;
-}
+} */
